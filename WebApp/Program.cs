@@ -27,7 +27,8 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.SlidingExpiration = true;
 });
 
-//external login
+//external login!
+
 
 
 var app = builder.Build();
