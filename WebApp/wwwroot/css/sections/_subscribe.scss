@@ -1,0 +1,67 @@
+.subscribe-section {
+  background-color: $gray-100;
+  .content {
+    max-width: 857px;
+    padding: 96px 0;
+    .top-wrapper {
+      display: flex;
+      margin-bottom: 48px;
+      gap: 27px;
+    }
+    .middle-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 32px;
+      @include breakpoint("large") {
+        flex-direction: row;
+      }
+      .h5 {
+        @include breakpoint("large") {
+          width: 35%;
+        }
+      }
+      .options-wrapper {
+        display: flex;
+        flex-direction: column;
+        @include breakpoint("medium") {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .option {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          margin: 5px;
+          @include breakpoint("medium") {
+            width: calc(50% - 10px);
+          }
+          @include breakpoint("large") {
+            width: calc(33.33% - 10px);
+          }
+          label {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+    .subscribe-input-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      @include breakpoint("medium") {
+        flex-direction: row;
+      }
+      .input {
+        flex-grow: 1;
+        height: 52px;
+        padding: 0 16px;
+        border: 1px solid $gray-400;
+        border-radius: 6px;
+        font-family: inherit;
+      }
+    }
+    .terms-span {
+      color: $theme;
+    }
+  }
+}

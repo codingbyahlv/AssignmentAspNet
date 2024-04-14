@@ -1,0 +1,76 @@
+.benefits-section {
+    background-color: $gray-100;
+    text-align: center;
+    padding: 89px 0 163px 0;
+
+    .text-l {
+        margin-top: 24px;
+    }
+
+    .card-wrapper {
+        display: grid;
+        grid-template-rows: auto;
+        margin-top: 32px;
+
+        @include breakpoint("small") {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include breakpoint("large") {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .card {
+            padding: 40px;
+            border: none;
+            border-radius: 0;
+            border-left: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+            background-color: $gray-100;
+
+            @include breakpoint("small") {
+                &:nth-child(2n + 1) {
+                    border-left: none;
+                }
+
+                &:nth-child(-n + 2) {
+                    border-top: none;
+                }
+            }
+
+            @include breakpoint("large") {
+                &:nth-child(2n + 1) {
+                    border-left: 1px solid #ccc;
+                }
+
+                &:nth-child(-n + 2) {
+                    border-top: 1px solid #ccc;
+                }
+
+                &:nth-child(3n + 1) {
+                    border-left: none;
+                }
+
+                &:nth-child(-n + 3) {
+                    border-top: none;
+                }
+            }
+
+            i {
+                color: $theme;
+                font-size: 40px;
+                margin-bottom: 24px;
+            }
+
+            .text-m {
+                margin-top: 12px;
+            }
+
+            &:hover {
+                background-color: $white;
+                border-radius: 8px;
+                @include shadow-s;
+            }
+        }
+    }
+}

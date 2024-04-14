@@ -1,0 +1,114 @@
+.header-section {
+  position: relative;
+  .content {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    @include breakpoint("large") {
+    }
+    .left-wrapper {
+      .link-wrapper {
+        display: none;
+      }
+      @include breakpoint("large") {
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        .link-wrapper {
+          display: flex;
+          gap: 24px;
+        }
+      }
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 3;
+      background-color: $gray-special;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5% 10%;
+      .mobile-top {
+        display: flex;
+        flex-direction: column;
+        .mobile-menu-btn {
+          font-size: 40px;
+          align-self: flex-end;
+        }
+        .mobile-links-wrapper {
+          display: flex;
+          flex-direction: column;
+          padding-top: 56px;
+
+          .menu-link {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            &:hover {
+              background-color: $gray-special-hover;
+              color: $white;
+            }
+          }
+        }
+      }
+      .mobile-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .mobile-btn-switch {
+          align-self: flex-start;
+          margin: 50px 0;
+        }
+        .mobile-btn-wrapper {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          padding-bottom: 60px;
+          a {
+            width: calc(50% - 10px);
+          }
+        }
+      }
+    }
+
+    .right-wrapper {
+      .mobile-menu-btn {
+        font-size: 40px;
+        @include breakpoint("large") {
+          display: none;
+        }
+      }
+      .btn-switch {
+        display: none;
+      }
+      .btn-wrapper {
+        display: none;
+      }
+      @include breakpoint("large") {
+        display: flex;
+        gap: 32px;
+        .btn-switch {
+          display: flex;
+        }
+        .btn-wrapper {
+          display: flex;
+          gap: 16px;
+        }
+      }
+    }
+  }
+}
+.hide {
+  display: none;
+}
+.show {
+  display: flex;
+}

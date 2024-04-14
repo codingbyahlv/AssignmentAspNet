@@ -1,0 +1,12 @@
+﻿@model HomeIndexViewModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+@await Html.PartialAsync("~/Views/Partials/Sections/_HeroSection.cshtml");
+@await Html.PartialAsync("~/Views/Partials/Sections/_BenefitsSection.cshtml");
+@await Html.PartialAsync("~/Views/Partials/Sections/_SliderSection.cshtml");
+@await Html.PartialAsync("~/Views/Partials/Sections/_ContentSection.cshtml");
+@await Html.PartialAsync("~/Views/Partials/Sections/_AppsSection.cshtml");
+@await Html.PartialAsync("~/Views/Partials/Sections/_ToolsSection.cshtml");
+@await Html.PartialAsync("~/Views/Partials/Sections/_SubscribeSection.cshtml");

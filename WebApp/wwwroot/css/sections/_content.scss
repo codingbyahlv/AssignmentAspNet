@@ -1,0 +1,57 @@
+.content-section {
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding: 82px 0;
+    @include breakpoint("medium") {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dashboard-img {
+      width: 100%;
+      @include breakpoint("medium") {
+        width: 55%;
+      }
+    }
+
+    .right-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      @include breakpoint("medium") {
+        width: 35%;
+      }
+      .h2 {
+        margin-bottom: 32px;
+        align-self: center;
+        @include breakpoint("medium") {
+          align-self: flex-start;
+        }
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+      }
+      .fa-octagon-check {
+        margin-bottom: 4px;
+        color: $theme;
+      }
+      .text-m {
+        padding: 6px 0;
+      }
+      .last-text {
+        margin-bottom: 40px;
+      }
+      .btn {
+        align-self: center;
+        @include breakpoint("medium") {
+          align-self: flex-start;
+        }
+      }
+    }
+  }
+}

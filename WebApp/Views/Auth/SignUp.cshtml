@@ -1,0 +1,70 @@
+﻿@model AuthSignUpViewModel
+@{
+    ViewData["Title"] = Model.Title;
+
+}
+
+<section class="section sign-up-section">
+    <div class="content">
+        <form class="sign-up-form" method="post" asp-action="SignUp" asp-controller="Auth" novalidate>
+            <div class="form-heading">
+                <h1 class="h1">Create Account</h1>
+                <p class="text-m">Already have an account? <a asp-controller="Auth" asp-action="SignIn">Sign in here.</a></p>
+            </div>
+            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+            {
+                <div class="alert">
+                    <p>@ViewData["ErrorMessage"]</p>
+                    <i class="fa-solid fa-triangle-exclamation icon"></i>
+                </div>
+            }
+            <div class="input-wrapper">
+                <div class="input-top-wrapper">
+                    <label class="h6 label" asp-for="SignUpForm.FirstName"></label>
+                    <span class="text-s span" asp-validation-for="SignUpForm.FirstName"></span>
+                </div>
+                <input class="input" asp-for="SignUpForm.FirstName" />
+            </div>
+            <div class="input-wrapper">
+                <div class="input-top-wrapper">
+                    <label class="h6 label" asp-for="SignUpForm.LastName"></label>
+                    <span class="text-s span" asp-validation-for="SignUpForm.LastName"></span>
+                </div>
+                <input class="input" asp-for="SignUpForm.LastName" />
+            </div>
+            <div class="input-wrapper">
+                <div class="input-top-wrapper">
+                    <label class="h6 label" asp-for="SignUpForm.Email"></label>
+                    <span class="text-s span" asp-validation-for="SignUpForm.Email"></span>
+                </div>
+                <input class="input" asp-for="SignUpForm.Email" />
+            </div>
+            <div class="input-wrapper">
+                <div class="input-top-wrapper">
+                    <label class="h6 label" asp-for="SignUpForm.Password"></label>
+                    <span class="text-s span" asp-validation-for="SignUpForm.Password"></span>
+                </div>
+                <input class="input" asp-for="SignUpForm.Password" />
+            </div>
+            <div class="input-wrapper">
+                <div class="input-top-wrapper">
+                    <label class="h6 label" asp-for="SignUpForm.ConfirmPassword"></label>
+                    <span class="text-s span" asp-validation-for="SignUpForm.ConfirmPassword"></span>
+                </div>
+                <input class="input" asp-for="SignUpForm.ConfirmPassword" />
+            </div>
+            <div class="checkbox-wrapper">
+                <span class="text-s span" asp-validation-for="SignUpForm.TermsAndConditions"></span>
+                <div>
+                    <input type="checkbox" class="checkbox" asp-for="SignUpForm.TermsAndConditions" />
+                    <label class="" asp-for="SignUpForm.TermsAndConditions">
+                        I agree to the <a asp-action="Terms" asp-controller="About">Terms</a> and <a asp-action="Conditions" asp-controller="About">Conditions</a>
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn-theme-s button">Sign up</button>
+        </form>
+    </div>
+</section>
+
+@* @await Html.PartialAsync("~/Views/Shared/Partials/Scripts/_ValidationScript.cshtml") *@

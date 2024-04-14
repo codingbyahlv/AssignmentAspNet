@@ -1,0 +1,292 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 21px;
+
+    .form-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+
+    .input-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .input {
+            border: 1px solid $gray-800;
+            border-radius: 8px;
+            height: 52px;
+            padding-left: 16px;
+            background-color: $gray-special-hover;
+            color: $gray-500;
+            @include standard-text("m");
+
+            &::placeholder {
+                opacity: 0.4;
+                @include standard-text("m");
+            }
+
+            &.input-validation-error {
+                position: relative;
+                border: 3px solid $danger;
+                color: $danger;
+
+                &::placeholder {
+                    color: danger;
+                }
+            }
+
+            &:focus {
+                outline: none;
+                border: 0.063rem solid $gray-600;
+            }
+        }
+
+        .input-top-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+
+            .label {
+                font-weight: 700;
+            }
+
+            .optional {
+                color: $gray-600;
+            }
+
+            .span {
+                &.field-validation-error {
+                    color: $danger;
+
+                    &::after {
+                        position: absolute;
+                        right: 10px;
+                        top: 40px;
+                        z-index: 1;
+                        display: block;
+                        content: "\2BBF";
+                        font-size: 24px;
+                    }
+                }
+            }
+        }
+
+        .textarea {
+            height: 104px;
+            border: 1px solid $gray-800;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: inherit;
+            background-color: $gray-special-hover;
+            color: $gray-500;
+
+            &::placeholder {
+                @include standard-text("m");
+                opacity: 0.4;
+            }
+        }
+    }
+
+    .input-pair-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        @include breakpoint("large") {
+            flex-direction: row;
+        }
+
+        .input-wrapper {
+            flex-grow: 1;
+        }
+    }
+
+    .checkbox-wrapper {
+
+        & > div {
+            display: flex;
+            gap: 8px;
+        }
+
+        .span {
+            &.field-validation-error {
+                color: $danger;
+            }
+        }
+    }
+
+    .button {
+        height: 52px;
+        font-weight: 700;
+    }
+}
+
+.colored-subheading {
+  color: $theme;
+}
+
+.sign-in-section {
+    padding-top: 100px;
+
+    .content {
+        max-width: 526px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .formLink {
+        text-align: center;
+        margin-bottom: 37px;
+    }
+
+    .external-account-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        border-top: 1px solid $gray-400;
+        padding-top: 24px;
+
+        .social-media-button-wrapper {
+            display: flex;
+            width: 100%;
+            gap: 24px;
+
+            a {
+                height: 52px;
+                width: calc(50% - 12px);
+
+                i {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+.sign-up-section {
+    padding-top: 100px;
+
+    .content {
+        max-width: 526px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.account-details-section {
+  .account-content {
+    .account-form-section {
+      .address-form {
+        margin-top: 48px;
+        padding-top: 40px;
+        border-top: 1px solid $gray-400;
+      }
+    }
+  }
+}
+
+.account-security-section {
+  .delete-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 31px;
+    border-top: 1px solid $gray-400;
+    form {
+      .checkbox-wrapper {
+        margin-top: 8px;
+      }
+    }
+    .button {
+      margin-top: 16px;
+      align-self: flex-start;
+    }
+  }
+}
+
+.account-content {
+  grid-template-columns: 1fr;
+  @include breakpoint("large") {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+  .mobile-heading {
+    display: block;
+    @include breakpoint("large") {
+      display: none;
+    }
+  }
+  .desktop-heading {
+    display: none;
+    @include breakpoint("large") {
+      display: block;
+    }
+  }
+
+  .account-aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+    padding: 40px 12px 0 0;
+    @include breakpoint("large") {
+      border-right: 1px solid $gray-400;
+    }
+    .aside-button-wrapper {
+      display: flex;
+      margin-top: 32px;
+      flex-direction: column;
+      @include breakpoint("large") {
+        width: 100%;
+      }
+      .aside-button {
+        height: 50px;
+        font-weight: 700;
+        display: flex;
+        color: $white;
+        @include breakpoint("large") {
+          justify-content: flex-start;
+        }
+        i {
+          color: $gray-600;
+        }
+        &:hover {
+          text-decoration: none !important;
+        }
+      }
+      .active {
+        @include theme-shadow;
+        background: $theme;
+        color: $white;
+        padding-top: 10px;
+        padding-bottom: 13px;
+      }
+    }
+  }
+
+  .account-form-section {
+    @include breakpoint("large") {
+      padding-top: 56px;
+      padding-left: 122px;
+    }
+
+    .password-form {
+      padding-bottom: 40px;
+    }
+    .button-wrapper {
+      display: fleX;
+      gap: 16px;
+      .button {
+        min-width: calc(50% - 8px);
+        @include breakpoint("large") {
+          min-width: auto;
+        }
+      }
+    }
+  }
+}

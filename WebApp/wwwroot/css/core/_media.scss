@@ -1,0 +1,23 @@
+$breakpoints: (
+  //mobil porträtt
+  "small": 576px,
+  //större mobil landskap, mindre plattor
+  "medium": 768px,
+  //surfplattor, mindre laptops
+  "large": 992px,
+  // större laptops
+  "xlarge": 1200px,
+  //extra stora skärmar
+  "xxlarge": 1400px
+);
+
+@mixin breakpoint($name) {
+  @media (min-width: map-get($breakpoints, $name)) {
+    @content;
+  }
+}
+
+// And use it like this:
+// @include breakpoint("medium") {
+// styles for medium and above
+// }

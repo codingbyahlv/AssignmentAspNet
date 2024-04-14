@@ -1,0 +1,80 @@
+﻿
+@inject SignInManager<UserEntity> _signInManager;
+
+<header class="section header-section">
+    <div class="content">
+        <div class="left-wrapper">
+            <a asp-controller="Home" asp-action="Index"><img src="/images/header_logo_desktop.svg"></a>
+            <div class="link-wrapper">
+                <a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
+                <a class="menu-link" asp-controller="Home" asp-action="Features">Features</a>
+                @if (_signInManager.IsSignedIn(User))
+                {
+                    <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+                }
+                <a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+            </div>
+        </div>
+
+        <div class="right-wrapper">
+            <i class="fa-solid fa-bars mobile-menu-btn" id="mobile-menu-btn-open"></i>
+            <div class="btn-switch">
+                <span>Light</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggle-btn">
+                    <span class="slider"></span>
+                </label>
+                <span>Dark</span>
+            </div>
+            <div class="btn-wrapper">
+                @if (_signInManager.IsSignedIn(User))
+                {
+                    <a class="" asp-controller="Account" asp-action="Details">Profile</a>
+                } 
+                else
+                {
+                    <a class="btn-gray" asp-controller="Auth" asp-action="SignIn"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign in</a>
+                    <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-regular fa-user"></i> Sign up</a>                
+                }
+            </div>
+        </div>
+
+        <div class="mobile-menu hide" id="mobile-menu">
+            <div class="mobile-top">
+                <i class="fa-solid fa-xmark mobile-menu-btn" id="mobile-menu-btn-close"></i>
+                <div class="mobile-links-wrapper">
+                    <a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
+                    <a class="menu-link" asp-controller="Home" asp-action="Features" >Features</a>
+                    @if (_signInManager.IsSignedIn(User))
+                    {
+                        <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+                    }
+                    <a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                </div>
+            </div>
+            <div class="mobile-bottom">
+                <div class="mobile-btn-switch">
+                    <span>Light</span>
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-btn-mobile">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Dark</span>
+                </div>
+
+                <div class="mobile-btn-wrapper">
+                    @if (_signInManager.IsSignedIn(User))
+                    {
+                        <a class="" asp-controller="Account" asp-action="Details">Profile</a>
+                    }
+                    else
+                    {
+                        <a class="btn-gray" asp-controller="Auth" asp-action="SignIn"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign in</a>
+                        <a class="btn-theme" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-user"></i> Sign up</a>
+                    }
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

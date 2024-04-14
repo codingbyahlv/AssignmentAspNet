@@ -1,0 +1,8 @@
+﻿@model CoursesIndexViewModel
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["ViewName"] = Model.ViewName;
+}
+
+@await Html.PartialAsync("~/Views/Partials/Sections/_BreadcrumbsSection.cshtml", ViewData["ViewName"]);
+<partial name="~/Views/Partials/Sections/_CoursesSection.cshtml" />

@@ -1,0 +1,20 @@
+.breadcrumbs-section {
+    margin-top: 40px;
+
+    .content {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .breadcrumb {
+            color: $gray-600;
+        }
+
+        .fa-house {
+            font-size: 18px;
+        }
+    }
+}
+.contact-bg {
+    background-color: none;
+}

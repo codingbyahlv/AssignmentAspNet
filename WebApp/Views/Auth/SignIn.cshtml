@@ -1,0 +1,53 @@
+﻿@model AuthSignInViewModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="section sign-in-section">
+    <div class="content">
+        <form class="sign-in-form" method="post" asp-action="SignIn" asp-controller="Auth" novalidate>
+            <div class="form-heading">
+                <h1 class="h1">Welcome Back</h1>
+                <p class="text-m">Don’t have an account yet? <a asp-controller="Auth" asp-action="SignUp">Sign up here.</a></p>
+            </div>
+            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+            {
+                <div class="alert">
+                    <p>@ViewData["ErrorMessage"]</p>
+                    <i class="fa-solid fa-triangle-exclamation icon"></i>
+                </div>
+            }
+            <div class="input-wrapper">
+                <div class="input-top-wrapper">
+                    <label class="h6 label" asp-for="SignInForm.Email"></label>
+                    <span class="text-s span" asp-validation-for="SignInForm.Email"></span>
+                </div>
+                <input class="input" asp-for="SignInForm.Email" />
+            </div>
+            <div class="input-wrapper">
+                <div class="input-top-wrapper">
+                    <label class="h6 label" asp-for="SignInForm.Password"></label>
+                    <span class="text-s span" asp-validation-for="SignInForm.Password"></span>
+                </div>
+                <input class="input" asp-for="SignInForm.Password" />
+            </div>
+            <div class="checkbox-wrapper">
+                <span class="text-s span" asp-validation-for="SignInForm.RememberMe"></span>
+                <div>
+                    <input type="checkbox" class="checkbox" asp-for="SignInForm.RememberMe" />
+                    <label class="" asp-for="SignInForm.RememberMe"></label>
+                </div>
+            </div>
+            <button type="submit" class="btn-theme-s button">Sign in</button>
+        </form>
+        <a asp-controller="Account" asp-action="ResetPassword" class="formLink">Forgot your password?</a>
+        <div class="external-account-wrapper">
+            <h6 class="h6">Or sign in with your social network</h6>
+            <div class="social-media-button-wrapper">
+                <a asp-action="Google" asp-controller="Auth" class="btn-gray"><i class="fa-brands fa-google"></i> Google</a>
+                <a asp-action="Facebook" asp-controller="Auth" class="btn-gray"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            </div>
+        </div>
+    </div>
+</section>
+

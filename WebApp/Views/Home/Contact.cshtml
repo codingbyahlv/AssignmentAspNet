@@ -1,0 +1,6 @@
+﻿@{
+    ViewData["ViewName"] = "contact";
+}
+
+@await Html.PartialAsync("~/Views/Partials/Sections/_BreadcrumbsSection.cshtml", ViewData["ViewName"])
+@await Html.PartialAsync("~/Views/Partials/Sections/_ContactSection.cshtml")

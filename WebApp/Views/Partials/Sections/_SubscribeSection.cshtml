@@ -1,0 +1,110 @@
+﻿@model HomeIndexViewModel
+
+<section class="section subscribe-section">
+    <div class="content">
+        <div class="top-wrapper">
+            <h1 class="h1">Don't Want to Miss Anything?</h1>
+            <img class="arrow-img" src="images/arrow.svg">
+        </div>
+
+        <form method="post" asp-controller="Home" asp-action="Index" novalidate>
+            <div class="middle-wrapper">
+                <h5 class="h5">Sign up for Newsletters</h5>
+                <div class="options-wrapper">
+                    <div class="option">
+                        <input asp-for="@Model.SubscribeSection.DailyNewsLetter" type="checkbox" />
+                        <label asp-for="@Model.SubscribeSection.DailyNewsLetter"></label>
+                    </div>
+                    <div class="option">
+                        <input asp-for="@Model.SubscribeSection.AdvertisingUpdates" type="checkbox" />
+                        <label asp-for="@Model.SubscribeSection.AdvertisingUpdates"></label>
+                    </div>
+                    <div class="option">
+                        <input asp-for="@Model.SubscribeSection.WeekInReview" type="checkbox" />
+                        <label asp-for="@Model.SubscribeSection.WeekInReview"></label>
+                    </div>
+                    <div class="option">
+                        <input asp-for="@Model.SubscribeSection.EventUpdates" type="checkbox" />
+                        <label asp-for="@Model.SubscribeSection.EventUpdates"></label>
+                    </div>
+                    <div class="option">
+                        <input asp-for="@Model.SubscribeSection.StartupsWeekly" type="checkbox" />
+                        <label asp-for="@Model.SubscribeSection.StartupsWeekly"></label>
+                    </div>
+                    <div class="option">
+                        <input asp-for="@Model.SubscribeSection.Podcasts" type="checkbox" />
+                        <label asp-for="@Model.SubscribeSection.Podcasts"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="subscribe-input-wrapper">
+                <input class="input" asp-for="@Model.SubscribeSection.Email">
+                <button type="submit" class="btn-theme">Subscribe*</button>
+            </div>
+            <div>
+            @if (ViewData["Status"]?.ToString() == "Success")
+            {
+                <div class="success">
+                    <p>You have been subscribed</p>
+                    <i class="fa-sharp fa-regular fa-circle-check"></i>
+                </div>
+            }
+            else if (ViewData["Status"]?.ToString() == "Already Exist")
+            {
+                <div class="alert">
+                    <p>Email already exist</p>
+                    <i class="fa-solid fa-triangle-exclamation icon"></i>
+                </div>
+            }
+            else if (ViewData["Status"]?.ToString() == "Connection Failed")
+            {
+                <div class="alert">
+                    <p>Unable to contact server</p>
+                    <i class="fa-solid fa-triangle-exclamation icon"></i>
+                </div>
+            }
+            else if (ViewData["Status"]?.ToString() == "Invalid")
+            {
+                <div class="alert">
+                    <p>Something wrong</p>
+                    <i class="fa-solid fa-triangle-exclamation icon"></i>
+                </div>
+            }
+            else
+            {
+                <p class="text-s"><span class="terms-span">*</span> Yes, I agree to the <span class="terms-span">terms</span> and <span class="terms-span">privacy policy</span>.</p>
+            }
+            </div>
+        
+        </form>
+    </div>
+</section>
+
+
+@* <div>
+    @if (ViewData["Status"]?.ToString() == "Success")
+    {
+        <span class="success">You have been subscribed</span>
+    }
+    else if (ViewData["Status"]?.ToString() == "Already Exist")
+    {
+        <span class="alert">Email already exist</span>
+    }
+    else if (ViewData["Status"]?.ToString() == "Connection Failed")
+    {
+        <span class="alert">Unable to contact server</span>
+    }
+    else if (ViewData["Status"]?.ToString() == "Invalid")
+    {
+        <div class="alert">
+            <p>Something wrong</p>
+            <i class="fa-solid fa-triangle-exclamation icon"></i>
+        </div>
+    }
+    else
+    {
+        <p class="text-s"><span class="terms-span">*</span> Yes, I agree to the <span class="terms-span">terms</span> and <span class="terms-span">privacy policy</span>.</p>
+
+    }
+</div> *@
+                        

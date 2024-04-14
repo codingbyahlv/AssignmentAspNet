@@ -1,0 +1,99 @@
+.contact-section {
+    background-color: $gray-special;
+    padding-top: 72px;
+
+    .contact-content {
+        display: flex;
+        flex-direction: column;
+
+        @include breakpoint("large") {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .right-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-bottom: 50px;
+
+            .contact-way-wrapper {
+                display: flex;
+                align-items: flex-start;
+                gap: 24px;
+
+                .icon-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 60px;
+                    height: 60px;
+                    background-color: $gray-900;
+                    padding: 16px;
+                    border-radius: 50%;
+
+                    i {
+                        font-size: 28px;
+                        color: $theme;
+                    }
+                }
+            }
+
+            .text-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                max-width: 306px;
+            }
+        }
+
+        .form-wrapper {
+            background-color: $gray-900;
+            border-radius: 8px;
+            z-index: 1;
+            padding: 40px;
+            @include breakpoint("large") {
+                width: 45%;
+            }
+            @include breakpoint("xlarge") {
+                padding: 72px;
+                width: 45%;
+            }
+
+            textarea {
+                height: 200px;
+            }
+
+            button {
+                align-self: flex-start;
+            }
+        }
+    }
+}
+
+.map-section {
+    display: flex;
+    position: relative;
+
+    @include breakpoint("large") {
+        min-height: 200px;
+    }
+
+    @include breakpoint("xlarge") {
+        min-height: 300px;
+    }
+
+    @include breakpoint("xxlarge") {
+        min-height: 400px;
+    }
+
+    .bg {
+        width: 100%;
+
+        @include breakpoint("large") {
+            position: absolute;
+            top: -250px;
+            left: 0;
+        }
+    }
+}

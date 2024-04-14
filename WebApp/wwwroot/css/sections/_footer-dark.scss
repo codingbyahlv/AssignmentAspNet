@@ -1,0 +1,28 @@
+.footer-section {
+    padding: 65px;
+    background-color: none;
+    z-index: 1;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        max-width: 857px;
+        text-align: center;
+
+        .social-media-wrapper {
+            display: flex;
+            gap: 16px;
+
+            .social-media-icon {
+                font-size: 20px;
+                width: 44px;
+                height: 44px;
+                padding: 12px;
+                background-color: $gray-special;
+                border-radius: 6px;
+            }
+        }
+    }
+}

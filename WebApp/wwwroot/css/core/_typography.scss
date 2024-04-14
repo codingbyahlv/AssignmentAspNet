@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+$font-manrope: "Manrope", sans-serif;
+
+$textSizes: (
+  "d1": 80px,
+  "d2": 72px,
+  "d3": 64px,
+  "d4": 56px,
+  "d5": 48px,
+  "d6": 42px,
+
+  "h1": 40px,
+  "h2": 32px,
+  "h3": 28px,
+  "h4": 24px,
+  "h5": 20px,
+  "h6": 16px,
+
+  "xs": 12px,
+  "s": 14px,
+  "m": 16px,
+  "l": 18px,
+  "xl": 20px,
+  "lead": 24px,
+);
+
+@mixin standard-text($name) {
+  $size: map-get($textSizes, $name);
+  font-size: $size;
+  line-height: 160%;
+  font-weight: 400;
+  color: $gray-700;
+  font-family: $font-manrope;
+}
+
+@mixin heading($name) {
+  @include standard-text($name);
+  font-weight: 800;
+  color: $gray-900;
+}
+
+@mixin nav-text {
+  @include standard-text("m");
+  font-weight: 600;
+  color: $gray-800;
+}
+
+.text-xs {
+  @include standard-text("xs");
+}
+.text-s {
+  @include standard-text("s");
+}
+.text-m {
+  @include standard-text("m");
+}
+.text-l {
+  @include standard-text("l");
+}
+.text-xl {
+  @include standard-text("xl");
+}
+.text-lead {
+  @include standard-text("lead");
+}
+
+.d1 {
+  @include heading("d1");
+}
+.d2 {
+  @include heading("d2");
+}
+.d3 {
+  @include heading("d3");
+}
+.d4 {
+  @include heading("d4");
+}
+.d5 {
+  @include heading("d5");
+}
+.d6 {
+  @include heading("d6");
+}
+
+.h1 {
+  @include heading("h1");
+}
+.h2 {
+  @include heading("h2");
+}
+.h3 {
+  @include heading("h3");
+}
+.h4 {
+  @include heading("h4");
+}
+.h5 {
+  @include heading("h5");
+}
+.h6 {
+  @include heading("h6");
+}
+
+.nav-text {
+  @include nav-text;
+}

@@ -1,0 +1,36 @@
+.benefits-section {
+  background-color: $gray-special;
+  text-align: center;
+  padding: 89px 0 163px 0;
+
+  .text-l {
+    margin-top: 24px;
+  }
+  .card-wrapper {
+    display: grid;
+    grid-template-rows: auto;
+    margin-top: 32px;
+    @include breakpoint("small") {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include breakpoint("large") {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .card {
+      padding: 40px;
+      i {
+        color: $theme;
+        font-size: 40px;
+        margin-bottom: 24px;
+      }
+      .text-m {
+        margin-top: 12px;
+      }
+      &:hover {
+        background-color: $gray-special-hover;
+        border-radius: 8px;
+        @include shadow-s;
+      }
+    }
+  }
+}

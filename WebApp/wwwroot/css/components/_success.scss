@@ -1,0 +1,14 @@
+.success {
+    background-color: $success-light;
+    color: $success;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    .icon {
+        font-size: 24px;
+    }
+}

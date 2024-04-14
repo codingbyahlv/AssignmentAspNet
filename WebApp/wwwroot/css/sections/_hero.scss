@@ -1,0 +1,77 @@
+.hero-section {
+  // display: flex;
+  // justify-content: center;
+  // background-image: url(../../../images/hero.svg);
+  // background-repeat: no-repeat;
+  // background-position: 100% 20%;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  .hero-img {
+    width: 80%;
+    align-self: flex-end;
+    @include breakpoint("large") {
+      position: absolute;
+      top: 5%;
+      right: 0;
+      z-index: -1;
+      width: 55%;
+    }
+    @include breakpoint("xlarge") {
+      top: 10%;
+      width: 50%;
+    }
+    @include breakpoint("xxlarge") {
+      top: 0;
+      width: 55%;
+    }
+  }
+  .content {
+    display: flex;
+    @include breakpoint("large") {
+      margin-top: 96px;
+    }
+    .left-wrapper {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      @include breakpoint("large") {
+        width: 70%;
+        padding-right: 120px;
+        text-align: left;
+      }
+      @include breakpoint("xlarge") {
+        width: 60%;
+      }
+      @include breakpoint("xxlarge") {
+        width: 50%;
+      }
+      .text-l {
+        margin-top: 32px;
+      }
+      .btn {
+        margin-top: 48px;
+        align-self: center;
+        @include breakpoint("large") {
+          align-self: flex-start;
+        }
+      }
+      .h6 {
+        margin-top: 96px;
+      }
+      .logo-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 30px;
+        @include breakpoint("large") {
+          justify-content: flex-start;
+        }
+        .logo {
+          flex-grow: 0;
+        }
+      }
+    }
+  }
+}

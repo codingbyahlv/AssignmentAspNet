@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/site-dark.css",
+    "inputFile": "wwwroot/css/site-dark.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/site-light.css",
+    "inputFile": "wwwroot/css/site-light.scss"
+  }
+]

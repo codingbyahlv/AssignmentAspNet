@@ -1,0 +1,141 @@
+﻿@model AccountDetailsViewModel
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["ViewName"] = Model.ViewName;
+}
+
+<section class="section account-details-section">
+    <div class="content account-content">
+        <h1 class="h1 mobile-heading">Account Details</h1>
+
+        <aside class="account-aside">
+            @await Html.PartialAsync("~/Views/Partials/Sections/_AccountAsideSection.cshtml", Model.ProfileInfo);
+        </aside>
+
+        <main class="account-form-section">
+            <h1 class="h1 desktop-heading">Account Details</h1>
+            <form class="basic-info-form" method="post" asp-controller="Account" asp-action="Details" novalidate>
+                <h5 class="h5 colored-subheading">Basic Info</h5>
+                @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+                {
+                    <div class="alert">
+                        <p>@ViewData["ErrorMessage"]</p>
+                        <i class="fa-solid fa-triangle-exclamation icon"></i>
+                    </div>
+                }
+                <div class="input-pair-wrapper">
+                    <div class="input-wrapper">
+                        <div class="input-top-wrapper">
+                            <label class="h6 label" asp-for="BasicInfoForm.FirstName"></label>
+                            @if (!Model.IsExternalAccount) { <span class="text-s span" asp-validation-for="BasicInfoForm.FirstName"></span> }
+                        </div>
+                        @if (Model.IsExternalAccount)
+                        {
+                            <input class="input" asp-for="BasicInfoForm.FirstName"  disabled />
+                            <input type="hidden" asp-for="BasicInfoForm.FirstName" />
+                        }
+                        else
+                        {
+                            <input class="input" asp-for="BasicInfoForm.FirstName" />
+                        }
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="input-top-wrapper">
+                            <label class="h6 label" asp-for="BasicInfoForm.LastName"></label>
+                            @if (!Model.IsExternalAccount)
+                            {
+                                <span class="text-s span" asp-validation-for="BasicInfoForm.LastName"></span>
+                            }
+                        </div>
+                        @if (Model.IsExternalAccount)
+                        {
+                            <input class="input" asp-for="BasicInfoForm.LastName" disabled />
+                            <input type="hidden" asp-for="BasicInfoForm.LastName" />
+                        }
+                        else
+                        {
+                            <input class="input" asp-for="BasicInfoForm.LastName" />
+                        }
+                    </div>
+                </div>
+                <div class="input-pair-wrapper">
+                    <div class="input-wrapper">
+                        <div class="input-top-wrapper">
+                            <label class="h6 label" asp-for="BasicInfoForm.Email"></label>
+                            @if (!Model.IsExternalAccount)
+                            {
+                                <span class="text-s span" asp-validation-for="BasicInfoForm.Email"></span>
+                            }
+                        </div>
+                        @if (Model.IsExternalAccount)
+                        {
+                            <input class="input" asp-for="BasicInfoForm.Email" disabled />
+                            <input type="hidden" asp-for="BasicInfoForm.Email" />
+                        }
+                        else
+                        {
+                            <input class="input" asp-for="BasicInfoForm.Email" />
+                        }
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="input-top-wrapper">
+                            <label class="h6 label" asp-for="BasicInfoForm.PhoneNumber"></label>
+                        </div>
+                        <input class="input" asp-for="BasicInfoForm.PhoneNumber" />
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <div class="input-top-wrapper">
+                        <label class="h6 label" asp-for="BasicInfoForm.Biography"></label>
+                    </div>
+                    <textarea class="textarea" asp-for="BasicInfoForm.Biography"></textarea>
+                </div>
+
+                <div class="button-wrapper">
+                    <button type="reset" class="btn-gray button">Cancel</button>
+                    <button type="submit" class="btn-theme button">Save changes</button>
+                </div>
+            </form>
+
+            <form class="address-form" method="post" asp-controller="Account" asp-action="Details" novalidate>
+                <h5 class="h5 colored-subheading">Address</h5>
+                <div class="input-wrapper">
+                    <div class="input-top-wrapper">
+                        <label class="h6 label" asp-for="AddressInfoForm.AddressLine1"></label>
+                        <span class="text-s span" asp-validation-for="AddressInfoForm.AddressLine1"></span>
+                    </div>
+                    <input class="input" asp-for="AddressInfoForm.AddressLine1" />
+                </div>
+                <div class="input-wrapper">
+                    <div class="input-top-wrapper">
+                        <label class="h6 label" asp-for="AddressInfoForm.AddressLine2"></label>
+                        <span class="text-s span" asp-validation-for="AddressInfoForm.AddressLine2"></span>
+                    </div>
+                    <input class="input" asp-for="AddressInfoForm.AddressLine2" />
+                </div>
+                <div class="input-pair-wrapper">
+                    <div class="input-wrapper">
+                        <div class="input-top-wrapper">
+                            <label class="h6 label" asp-for="AddressInfoForm.PostalCode"></label>
+                            <span class="text-s span" asp-validation-for="AddressInfoForm.PostalCode"></span>
+                        </div>
+                        <input class="input" asp-for="AddressInfoForm.PostalCode" />
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="input-top-wrapper">
+                            <label class="h6 label" asp-for="AddressInfoForm.City"></label>
+                            <span class="text-s span" asp-validation-for="AddressInfoForm.City"></span>
+                        </div>
+                        <input class="input" asp-for="AddressInfoForm.City" />
+                    </div>
+                </div>
+                <div class="button-wrapper">
+                    <button type="reset" class="btn-gray button">Cancel</button>
+                    <button type="submit" class="btn-theme button">Save changes</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</section>
+
+@* @await Html.PartialAsync("~/Views/Shared/Partials/Scripts/_ValidationScript.cshtml") *@
