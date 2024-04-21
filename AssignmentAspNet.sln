@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{FAE1CAC2-7CC7-4859-85EE-EAAE592B01F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure_Api", "Infrastructure_Api\Infrastructure_Api.csproj", "{5A2742B7-90C2-4A67-A198-2E803D3305DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure_Api", "Infrastructure_Api\Infrastructure_Api.csproj", "{5A2742B7-90C2-4A67-A198-2E803D3305DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
