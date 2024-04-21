@@ -8,69 +8,83 @@
         <h1 class="h1 mobile-heading">Security</h1>
 
         <aside class="account-aside">
-            @await Html.PartialAsync("~/Views/Partials/Sections/_AccountAsideSection.cshtml", Model.ProfileInfo);
+            @await Html.PartialAsync("~/Views/Partials/Sections/_AccountAsideSection.cshtml", Model.ProfileInfo)
         </aside>
 
         <main class="account-form-section">
             <h1 class="h1 desktop-heading">Security</h1>
 
-            <form class="password-form">
+            <form method="post" asp-controller="Account" asp-action="Security" novalidate class="password-form">
                 <h5 class="h5 colored-subheading">Password</h5>
+                @if (Model.IsExternalAccount)
+                {   
+                    <br />
+                    <div class="alert">
+                        <p>Since you are logged in with an external account, it is not possible to change the password</p>
+                        <i class="fa-solid fa-triangle-exclamation icon"></i>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+                {
+                    <div class="alert">
+                        <p>@ViewData["ErrorMessage"]</p>
+                        <i class="fa-solid fa-triangle-exclamation icon"></i>
+                    </div>
+                }
+                @if (!Model.IsExternalAccount)
+                {
+                    <div class="input-pair-wrapper">
+                        <div class="input-wrapper">
+                            <div class="input-top-wrapper">
+                                <label class="h6 label" asp-for="@Model.SecurityForm.CurrentPassword"></label>
+                                <span class="text-s span" asp-validation-for="@Model.SecurityForm.CurrentPassword"></span>
+                            </div>
+                            <input class="input" asp-for="@Model.SecurityForm.CurrentPassword" />
+                        </div>
 
-                <div class="input-pair-wrapper">
-                    <div class="input-wrapper">
-                        <div class="input-top-wrapper">
-                            <label class="h6 label">Label</label>
-                            <span class="text-s span"></span>
-                        </div>
-                        <input placeholder="Placeholder" class="input" />
                     </div>
-                    <div class="input-wrapper">
-                        <div class="input-top-wrapper">
-                            <label class="h6 label">Label</label>
-                            <span class="text-s span"></span>
-                        </div>
-                        <input placeholder="Placeholder" class="input" />
-                    </div>
-                </div>
 
-                <div class="input-pair-wrapper">
-                    <div class="input-wrapper">
-                        <div class="input-top-wrapper">
-                            <label class="h6 label">Label</label>
-                            <span class="text-s span"></span>
+                    <div class="input-pair-wrapper">
+                        <div class="input-wrapper">
+                            <div class="input-top-wrapper">
+                                <label class="h6 label" asp-for="@Model.SecurityForm.NewPassword"></label>
+                                <span class="text-s span" asp-validation-for="@Model.SecurityForm.NewPassword"></span>
+                            </div>
+                            <input class="input" asp-for="@Model.SecurityForm.NewPassword" />
                         </div>
-                        <input placeholder="Placeholder" class="input" />
-                    </div>
-                    <div class="input-wrapper">
-                        <div class="input-top-wrapper">
-                            <label class="h6 label">Label</label>
-                            <span class="text-s span"></span>
+                        <div class="input-wrapper">
+                            <div class="input-top-wrapper">
+                                <label class="h6 label" asp-for="@Model.SecurityForm.ConfirmPassword"></label>
+                                <span class="text-s span" asp-validation-for="@Model.SecurityForm.ConfirmPassword"></span>
+                            </div>
+                            <input class="input" asp-for="@Model.SecurityForm.ConfirmPassword" />
                         </div>
-                        <input placeholder="Placeholder" class="input" />
                     </div>
-                </div>
 
-                <div class="button-wrapper">
-                    <button type="reset" class="btn-gray button">Cancel</button>
-                    <button type="submit" class="btn-theme button">Save changes</button>
-                </div>
+                    <div class="button-wrapper">
+                        <button type="reset" class="btn-gray button">Cancel</button>
+                        <button type="submit" class="btn-theme button">Save changes</button>
+                    </div>
+                }
             </form>
 
             <div class="delete-wrapper">
                 <h5 class="h5 colored-subheading">Delete account</h5>
                 <p class="text-m">When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
-                <form>
+                <form method="post" asp-controller="Account" asp-action="Security" novalidate>
                     <div class="checkbox-wrapper">
-                        <label>
-                            <input type="checkbox" class="checkbox" />
-                            Yes, I want to delete my account.
-                        </label>
+                        
+                            <label class="" asp-for="@Model.DeleteForm.IsDelete">
+                                <input type="checkbox" class="checkbox" asp-for="@Model.DeleteForm.IsDelete" />
+                                Yes, I want to delete my account.
+                            </label>                    
+                        <span class="text-s span" asp-validation-for="@Model.DeleteForm.IsDelete"></span>
                     </div>
                     <button type="submit" class="btn-red button">Delete</button>
                 </form>
             </div>
-
         </main>
     </div>
 </section>
+
+@await Html.PartialAsync("~/Views/Shared/Scripts/_ValidationScript.cshtml")

@@ -1,10 +1,21 @@
 ﻿
 @inject SignInManager<UserEntity> _signInManager;
+@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+    var isDark = (themeMode == "dark" ? true : false);
+}
 
 <header class="section header-section">
     <div class="content">
         <div class="left-wrapper">
-            <a asp-controller="Home" asp-action="Index"><img src="/images/header_logo_desktop.svg"></a>
+            @if (isDark)
+            {
+                <a asp-controller="Home" asp-action="Index"><img src="/images/header_logo_desktop_dark.svg"></a>
+            }
+            else
+            {
+                <a asp-controller="Home" asp-action="Index"><img src="/images/header_logo_desktop.svg"></a>
+            }
             <div class="link-wrapper">
                 <a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
                 <a class="menu-link" asp-controller="Home" asp-action="Features">Features</a>
@@ -20,8 +31,9 @@
             <i class="fa-solid fa-bars mobile-menu-btn" id="mobile-menu-btn-open"></i>
             <div class="btn-switch">
                 <span>Light</span>
-                <label class="switch">
-                    <input type="checkbox" id="toggle-btn">
+                <label class="switch" for="toggle-btn">
+
+                    <input type="checkbox" id="toggle-btn" checked="@isDark">
                     <span class="slider"></span>
                 </label>
                 <span>Dark</span>
@@ -55,8 +67,8 @@
             <div class="mobile-bottom">
                 <div class="mobile-btn-switch">
                     <span>Light</span>
-                    <label class="switch">
-                        <input type="checkbox" id="toggle-btn-mobile">
+                    <label class="switch" for="toggle-btn-mobile">
+                        <input type="checkbox" id="toggle-btn-mobile" checked="@isDark">
                         <span class="slider"></span>
                     </label>
                     <span>Dark</span>
@@ -65,12 +77,12 @@
                 <div class="mobile-btn-wrapper">
                     @if (_signInManager.IsSignedIn(User))
                     {
-                        <a class="" asp-controller="Account" asp-action="Details">Profile</a>
+                        <a class="menu-link" asp-controller="Account" asp-action="Details"><img src="~/images/avatar.svg" alt="" class="profile-img" /> Profile</a>
                     }
                     else
                     {
                         <a class="btn-gray" asp-controller="Auth" asp-action="SignIn"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign in</a>
-                        <a class="btn-theme" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-user"></i> Sign up</a>
+                        <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-regular fa-user"></i> Sign up</a>
                     }
                     
                 </div>

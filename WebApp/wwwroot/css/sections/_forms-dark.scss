@@ -210,83 +210,105 @@ form {
 }
 
 .account-content {
-  grid-template-columns: 1fr;
-  @include breakpoint("large") {
-    display: grid;
-    grid-template-columns: auto 1fr;
-  }
-  .mobile-heading {
-    display: block;
-    @include breakpoint("large") {
-      display: none;
-    }
-  }
-  .desktop-heading {
-    display: none;
-    @include breakpoint("large") {
-      display: block;
-    }
-  }
+    grid-template-columns: 1fr;
 
-  .account-aside {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 300px;
-    padding: 40px 12px 0 0;
     @include breakpoint("large") {
-      border-right: 1px solid $gray-400;
+        display: grid;
+        grid-template-columns: auto 1fr;
     }
-    .aside-button-wrapper {
-      display: flex;
-      margin-top: 32px;
-      flex-direction: column;
-      @include breakpoint("large") {
-        width: 100%;
-      }
-      .aside-button {
-        height: 50px;
-        font-weight: 700;
+
+    .mobile-heading {
+        display: block;
+
+        @include breakpoint("large") {
+            display: none;
+        }
+    }
+
+    .desktop-heading {
+        display: none;
+
+        @include breakpoint("large") {
+            display: block;
+        }
+    }
+
+    .account-aside {
         display: flex;
-        color: $white;
-        @include breakpoint("large") {
-          justify-content: flex-start;
-        }
-        i {
-          color: $gray-600;
-        }
-        &:hover {
-          text-decoration: none !important;
-        }
-      }
-      .active {
-        @include theme-shadow;
-        background: $theme;
-        color: $white;
-        padding-top: 10px;
-        padding-bottom: 13px;
-      }
-    }
-  }
+        flex-direction: column;
+        align-items: center;
+        min-width: 300px;
+        padding: 40px 12px 50px 0;
 
-  .account-form-section {
-    @include breakpoint("large") {
-      padding-top: 56px;
-      padding-left: 122px;
+        @include breakpoint("large") {
+            border-right: 1px solid $gray-400;
+        }
+
+        .profile-img {
+            margin-bottom: 16px;
+            width: 120px;
+            height: 120px;
+        }
+
+        .aside-button-wrapper {
+            display: flex;
+            margin-top: 32px;
+            flex-direction: column;
+
+            @include breakpoint("large") {
+                width: 100%;
+            }
+
+            .aside-button {
+                height: 50px;
+                font-weight: 700;
+                display: flex;
+                color: $white;
+
+                @include breakpoint("large") {
+                    justify-content: flex-start;
+                }
+
+                i {
+                    color: $gray-600;
+                }
+
+                &:hover {
+                    text-decoration: none !important;
+                }
+            }
+
+            .active {
+                @include theme-shadow;
+                background: $theme;
+                color: $white;
+                padding-top: 10px;
+                padding-bottom: 13px;
+            }
+        }
     }
 
-    .password-form {
-      padding-bottom: 40px;
-    }
-    .button-wrapper {
-      display: fleX;
-      gap: 16px;
-      .button {
-        min-width: calc(50% - 8px);
+    .account-form-section {
         @include breakpoint("large") {
-          min-width: auto;
+            padding-top: 56px;
+            padding-left: 122px;
         }
-      }
+
+        .password-form {
+            padding-bottom: 40px;
+        }
+
+        .button-wrapper {
+            display: fleX;
+            gap: 16px;
+
+            .button {
+                min-width: calc(50% - 8px);
+
+                @include breakpoint("large") {
+                    min-width: auto;
+                }
+            }
+        }
     }
-  }
 }

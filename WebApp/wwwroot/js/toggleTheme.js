@@ -1,16 +1,32 @@
-const toggleBtn = document.querySelector("#toggle-btn");
-const toggleBtnMobile = document.querySelector("#toggle-btn-mobile");
-const themeStylesheet = document.querySelector("#theme-stylesheet");
+document.addEventListener('DOMContentLoaded', function () {
+    let sw = document.querySelector('#toggle-btn')
 
-function toggleTheme() {
-    if (themeStylesheet.href.includes("light")) { 
-        themeStylesheet.href = "/css/site-dark.min.css";
-    } else {
-        themeStylesheet.href = "/css/site-light.min.css";
-    }
-}
+    sw.addEventListener('click', function () {
+        let theme = this.checked ? "dark" : "light"
 
-window.addEventListener("load", function () {
-    toggleBtn.addEventListener("click", toggleTheme);
-    toggleBtnMobile.addEventListener("click", toggleTheme);
-});
+        fetch(`/sitesettings/changetheme?theme=${theme}`)
+            .then(res => {
+                if (res.ok)
+                    window.location.reload()
+                else
+                    console.log('theme trubble')
+            })
+    })
+})
+
+document.addEventListener('DOMContentLoaded', function () {
+    let sw = document.querySelector('#toggle-btn-mobile')
+
+    sw.addEventListener('click', function (e) {
+        let theme = this.checked ? "dark" : "light"
+
+        fetch(`/sitesettings/changetheme?theme=${theme}`)
+            .then(res => {
+                if (res.ok) {
+                    window.location.reload()
+                }
+                else
+                    console.log('theme trouble')
+            })
+    })
+})

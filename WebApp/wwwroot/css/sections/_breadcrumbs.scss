@@ -1,11 +1,12 @@
 .breadcrumbs-section {
     padding-top: 40px;
+    width: 100%;
 
-    .content {
+    .br-content {
         display: flex;
         align-items: center;
         gap: 8px;
-
+        padding: 0 !important;
         .breadcrumb {
             color: $gray-600;
         }
@@ -15,6 +16,7 @@
         }
     }
 }
+
 .contact-bg {
     background-color: $gray-100;
 }

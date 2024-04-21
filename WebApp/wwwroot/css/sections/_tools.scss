@@ -1,42 +1,51 @@
 .tools-section {
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 94px 0;
-    .h1 {
-      text-align: center;
-    }
-    .text-l {
-      text-align: center;
-      padding: 24px 0 56px 0;
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 94px 0;
 
-      @include breakpoint("large") {
-        width: 70%;
-      }
-    }
+        .h1 {
+            text-align: center;
+        }
 
-    .card-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
+        .text-l {
+            text-align: center;
+            padding: 24px 0 56px 0;
 
-      .tool-card {
-        width: calc(50% - 20px);
-        padding: 24px;
-        margin: 10px;
-        border-radius: 8px;
-        @include breakpoint("medium") {
-          width: calc(33.33% - 20px);
+            @include breakpoint("large") {
+                width: 70%;
+            }
         }
-        @include breakpoint("large") {
-          width: calc(25% - 20px);
+
+        .card-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+
+            .tool-card {
+                width: 100%;
+                padding: 24px;
+                margin: 10px;
+                border-radius: 8px;
+
+                @include breakpoint("small") {
+                    width: calc(50% - 20px);
+                }
+
+                @include breakpoint("medium") {
+                    width: calc(33.33% - 20px);
+                }
+
+                @include breakpoint("large") {
+                    width: calc(25% - 20px);
+                }
+
+                &:hover {
+                    border-radius: 8px;
+                    @include shadow-s;
+                }
+            }
         }
-        &:hover {
-          border-radius: 8px;
-          @include shadow-s;
-        }
-      }
     }
-  }
 }

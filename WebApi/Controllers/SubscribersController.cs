@@ -1,12 +1,14 @@
 ﻿using Infrastructure_Api.Models;
 using Infrastructure_Api.Services;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Attributes;
 
 
 namespace WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[UseApiKey]
 public class SubscribersController( SubscriberService subscriberService) : ControllerBase
 {
     private readonly SubscriberService _subscriberService = subscriberService;

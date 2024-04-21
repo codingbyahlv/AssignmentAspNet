@@ -3,9 +3,9 @@
 }
 
 <section class="@(parentView == "contact" ? "section breadcrumbs-section contact-bg" : "section breadcrumbs-section")">
-    <div class="content">
+    <div class="content br-content">
         <i class="fa-sharp fa-regular fa-house breadcrumb"></i>
-        <a class="breadcrumb" asp-controller="Home" asp-action="Index"></i>Home</a>
+        <a class="breadcrumb" asp-controller="Home" asp-action="Index">Home</a>
         <i class="fa-solid fa-chevrons-right breadcrumb"></i>
         @if (parentView == "courses")
         {
@@ -14,6 +14,12 @@
         @if (parentView == "contact")
         {
             <a class="" asp-controller="Home" asp-action="Contact">Contact</a>
+        }
+        @if (parentView == "Details")
+        {
+            <a class="" asp-controller="Courses" asp-action="Index">Courses</a>
+            <i class="fa-solid fa-chevrons-right breadcrumb"></i>
+            <a class="" asp-controller="Courses" asp-action="Index">Kursnamn</a>
         }
     </div>
 </section>

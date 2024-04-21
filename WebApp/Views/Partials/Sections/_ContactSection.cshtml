@@ -1,4 +1,6 @@
-﻿<section class="section contact-section">
+﻿@model ContactViewModel
+
+<section class="section contact-section">
     <div class="content contact-content">
         <div class="right-wrapper">
             <div class="heading-wrapper">
@@ -27,37 +29,60 @@
             </article>
 
         </div>
-        <form class="form-wrapper">
+        <form method="post" asp-controller="Home" asp-action="Contact" novalidate class="form-wrapper">
+            @if (ViewData["Status"]?.ToString() == "Success")
+            {
+                <div class="success">
+                    <p>Your message has been sent</p>
+                    <i class="fa-sharp fa-regular fa-circle-check"></i>
+                </div>
+            }
+            else if (ViewData["Status"]?.ToString() == "Connection Failed")
+            {
+                <div class="alert">
+                    <p>Unable to contact server</p>
+                    <i class="fa-solid fa-triangle-exclamation icon"></i>
+                </div>
+            }
+            else if (ViewData["Status"]?.ToString() == "Invalid")
+            {
+                <div class="alert">
+                    <p>Something wrong</p>
+                    <i class="fa-solid fa-triangle-exclamation icon"></i>
+                </div>
+            }
+            
+            
             <h2 class="h2">Get In Contact With Us</h2>
             <div class="input-wrapper">
                 <div class="input-top-wrapper">
-                    <label class="h6 label">Label</label>
-                    <span class="text-s span"></span>
+                    <label class="h6 label" asp-for="@Model.ContactForm.Name"></label>
+                    <span class="text-s span" asp-validation-for="@Model.ContactForm.Name"></span>
                 </div>
-                <input placeholder="Placeholder" class="input" />
+                <input class="input" asp-for="@Model.ContactForm.Name" />
             </div>
             <div class="input-wrapper">
                 <div class="input-top-wrapper">
-                    <label class="h6 label">Label</label>
-                    <span class="text-s span"></span>
+                    <label class="h6 label" asp-for="@Model.ContactForm.Email"></label>
+                    <span class="text-s span" asp-validation-for="@Model.ContactForm.Email"></span>
                 </div>
-                <input placeholder="Placeholder" class="input" />
+                <input class="input" asp-for="@Model.ContactForm.Email" />
             </div>
             <div class="input-wrapper">
                 <div class="input-top-wrapper">
-                    <label class="h6 label">Label</label>
-                    <span class="text-s span"></span>
+                    <label class="h6 label" asp-for="@Model.ContactForm.Service"></label>
+                    <span class="text-s span" asp-validation-for="@Model.ContactForm.Service"></span>
                 </div>
-                <input placeholder="Placeholder" class="input" />
+                <input class="input" asp-for="@Model.ContactForm.Service" />
             </div>
             <div class="input-wrapper">
                 <div class="input-top-wrapper">
-                    <label class="h6 label">Label</label>
-                    <span class="text-s span"></span>
+                    <label class="h6 label" asp-for="@Model.ContactForm.Message"></label>
+                    <span class="text-s span" asp-validation-for="@Model.ContactForm.Message"></span>
                 </div>
-                <textarea class="input"></textarea>
+                <textarea class="input" asp-for="@Model.ContactForm.Message"></textarea>
             </div>
-            <button class="btn-theme-s">Send Contact Request</button>
+            <button type="submit" class="btn-theme-s">Send Contact Request</button>
         </form>
     </div>
 </section>

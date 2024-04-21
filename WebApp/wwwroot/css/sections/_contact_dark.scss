@@ -1,5 +1,5 @@
 .contact-section {
-    background-color: $gray-special;
+    background-color: $gray-900;
     padding-top: 72px;
 
     .contact-content {
@@ -48,19 +48,26 @@
         }
 
         .form-wrapper {
-            background-color: $gray-900;
+            background-color: $gray-special;
             border-radius: 8px;
             z-index: 1;
-            padding: 40px;
+            padding: 40px 20px;
+
+            @include breakpoint("medium") {
+                padding: 40px;
+            }
+
             @include breakpoint("large") {
                 width: 45%;
             }
+
             @include breakpoint("xlarge") {
                 padding: 72px;
                 width: 45%;
             }
 
             textarea {
+                padding: 16px;
                 height: 200px;
             }
 

@@ -1,25 +1,24 @@
-using Infrastructure_Api.Context;
-using Infrastructure_Api.Services;
-using Microsoft.EntityFrameworkCore;
+using WebApi.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ApiDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalApiDb")));
-builder.Services.AddScoped<SubscriberService>();
-builder.Services.AddScoped<CourseService>();
+
+builder.Services.RegisterDbContexts(builder.Configuration);
+builder.Services.RegisterSwagger();
+builder.Services.RegisterJwt(builder.Configuration);
+builder.Services.RegisterServices(builder.Configuration);
+
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+app.UseSwagger();
+app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "Silicon Web APi v1"));
 app.UseHttpsRedirection();
+app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

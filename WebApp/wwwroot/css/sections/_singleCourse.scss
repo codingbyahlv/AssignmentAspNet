@@ -1,0 +1,252 @@
+.single-course-top-section {
+    .content {
+        color: $gray-500;
+        padding: 72px 0 112px 0;
+
+        .badge-wrapper {
+            display: flex;
+            gap: 8px;
+
+            & p {
+                padding: 0 8px;
+                border-radius: 4px;
+            }
+
+            .is-bestseller {
+                background-color: $success;
+                color: $white;
+            }
+
+            .type {
+                background-color: $gray-200;
+            }
+        }
+
+        .h1 {
+            color: $white;
+        }
+
+        .meta-wrapper {
+            display: flex;
+            gap: 16px;
+            margin-top: 50px;
+
+            & p {
+                color: $gray-500;
+            }
+        }
+
+        .fa-star {
+            color: $warning;
+        }
+
+        .fa-regular {
+            color: inherit;
+        }
+
+        .author-wrapper {
+            display: flex;
+            gap: 16px;
+            margin-top: 160px;
+
+            p {
+                color: white;
+            }
+        }
+    }
+}
+
+.single-course-info-section {
+    .content {
+        padding: 50px 0;
+
+        @include breakpoint("medium") {
+            padding: 96px 0;
+        }
+
+        .top-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            @include breakpoint("medium") {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+
+            .right-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+
+                @include breakpoint("medium") {
+                    max-width: 50%;
+                }
+
+                .learning-heading {
+                    margin-top: 8px;
+                }
+
+                .learning-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+
+                    .learning {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+
+                        .fa-circle-check {
+                            color: $theme;
+                        }
+                    }
+                }
+            }
+
+            .aside {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+                min-width: 35%;
+                padding: 40px;
+                border: 1px solid $gray-300;
+                border-radius: 8px;
+                @include shadow-m;
+
+                .includes-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+
+                    .include {
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                    }
+                }
+
+                .price-wrapper {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-top: 16px;
+
+                    .discount {
+                        text-decoration: line-through;
+                        color: $gray-600;
+                    }
+                }
+            }
+        }
+
+        .bottom-wrapper {
+            @include breakpoint("xlarge") {
+                max-width: 50%;
+            }
+
+            .details-heading {
+                margin-top: 56px;
+            }
+
+            .details-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 48px;
+                margin-top: 8px;
+
+                .detail {
+                    display: flex;
+                    gap: 30px;
+
+                    .number {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 20px;
+                        border: 14px solid $gray-100;
+                        border-radius: 50%;
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.single-course-author-section {
+    .content {
+        display: flex;
+        flex-direction: column;
+
+        @include breakpoint("large") {
+            flex-direction: row-reverse;
+        }
+
+        .text-wrapper {
+            background-image: url("../../../images/pattern.svg");
+            background-color: $gray-900;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 40px 25px;
+
+            @include breakpoint("medium") {
+                padding: 45px 50px;
+            }
+
+            @include breakpoint("large") {
+                padding: 96px 110px;
+            }
+
+            .text-content {
+                max-width: 530px;
+
+                .intro-span {
+                    color: $gray-500;
+                }
+
+                .heading {
+                    color: $white;
+                }
+
+                .copy {
+                    color: $gray-500;
+                }
+
+                .meta-wrapper {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 24px;
+                    color: $white;
+                    margin-top: 40px;
+
+                    .meta-yt,
+                    .meta-fb {
+                        padding: 11px 28px;
+                    }
+
+                    .meta-yt {
+                        background-color: $danger;
+                    }
+
+                    .meta-fb {
+                        background-color: $info;
+                    }
+                }
+            }
+        }
+
+        .img-wrapper {
+            .author-img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}

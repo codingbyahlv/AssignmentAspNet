@@ -13,8 +13,13 @@ public class SubscriberService(ApiDbContext context)
 
     public async Task<bool> IsEmailExist(string email)
     {
-        bool result = await _context.Subscribers.AnyAsync(x => x.Email == email);
-        return result;
+        try
+        {
+            bool result = await _context.Subscribers.AnyAsync(x => x.Email == email);
+            return result;
+        }
+        catch (Exception ex) { Debug.WriteLine("Error : " + ex.Message); }
+        return false;
     }
 
     public async Task<bool> CreateSubscriber(SubscriberModel model)

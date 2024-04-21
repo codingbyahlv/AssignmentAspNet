@@ -10,10 +10,12 @@ using WebApp.ViewModels.Views;
 namespace WebApp.Controllers;
 
 [Authorize]
-public class AccountController(AddressManager addressManager, SignInManager<UserEntity> signInManager, UserManager<UserEntity> userManager) : Controller
+public class AccountController(AddressManager addressManager, CourseService courseService, SignInManager<UserEntity> signInManager, UserManager<UserEntity> userManager) : Controller
 {
     private readonly UserManager<UserEntity> _userManager = userManager;
+    private readonly SignInManager<UserEntity> _signInManager = signInManager;
     private readonly AddressManager _addressManager = addressManager;
+    private readonly CourseService _courseService = courseService;
 
     #region DetailsGet
     [HttpGet]
@@ -55,10 +57,56 @@ public class AccountController(AddressManager addressManager, SignInManager<User
     #endregion
 
     #region SecurityGet
+    [HttpGet]
     public async Task<IActionResult> Security()
     {
         AccountSecurityViewModel viewModel = new();
+        UserEntity? user = await _userManager.GetUserAsync(User);
+        if (user != null)
+            viewModel.IsExternalAccount = user.IsExternalAccount;
         viewModel.ProfileInfo = await PopulateProfileInfoAsync();
+        return View(viewModel);
+    }
+    #endregion
+
+    #region SecurityPost
+    [HttpPost]
+    public async Task<IActionResult> Security(AccountSecurityViewModel viewModel)
+    {
+        if(viewModel.SecurityForm != null)
+        {
+            if(viewModel.SecurityForm.CurrentPassword != null && viewModel.SecurityForm.NewPassword != null && viewModel.SecurityForm.ConfirmPassword != null)
+            {
+                bool result = await UpdatePassword(viewModel.SecurityForm);
+                if (!result)
+                {
+                    ViewData["ErrorMessage"] = "Something went wrong!";
+                }
+            }
+        }
+
+        if (viewModel.DeleteForm != null)
+        {
+            if (viewModel.DeleteForm.IsDelete)
+            {
+                try
+                {
+                    UserEntity? user = _userManager.GetUserAsync(User).Result;
+                    if (user != null)
+                    {
+                        await _signInManager.SignOutAsync();
+
+                        IdentityResult result = await _userManager.DeleteAsync(user);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                }
+                catch { return RedirectToAction("Security", "Account"); }
+            }
+        }
+        viewModel = await PopulateAccountSecurityViewModelAsync(viewModel);
         return View(viewModel);
     }
     #endregion
@@ -68,9 +116,39 @@ public class AccountController(AddressManager addressManager, SignInManager<User
     {
         AccountSavedCoursesViewModel viewModel = new();
         viewModel.ProfileInfo = await PopulateProfileInfoAsync();
+
+        UserEntity? user = await _userManager.GetUserAsync(User);
+        if (user != null)
+        {
+            if(user.SavedCoursesIdList.Count > 0)
+            {
+                List<int> idList = user.SavedCoursesIdList;
+                List<CourseModel> response = await _courseService.GetSavedCoursesAsync(idList);
+                viewModel.CoursesSection.CourseList = response;
+            }
+        }
         return View(viewModel);
+
     }
     #endregion
+
+    private async Task<bool> UpdatePassword(AccountSecurityFormModel model)
+    {
+        UserEntity? user = await _userManager.GetUserAsync(User);
+        if (user != null)
+        {
+            try
+            {
+                IdentityResult result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                if (result.Succeeded)
+                {
+                    return true;
+                }
+            }
+            catch { return false; }
+        }
+        return false;
+    }
 
     private async Task<bool> UpdateBasicInfoForm(BasicInfoModel formModel)
     {
@@ -82,6 +160,7 @@ public class AccountController(AddressManager addressManager, SignInManager<User
             user.Email = formModel.Email;
             user.PhoneNumber = formModel.PhoneNumber;
             user.Biography = formModel.Biography;
+            user.UserName = formModel.Email;
                 
             IdentityResult result =  await _userManager.UpdateAsync(user);
             if(result.Succeeded)
@@ -122,6 +201,17 @@ public class AccountController(AddressManager addressManager, SignInManager<User
         return viewModel;
     }
 
+    private async Task<AccountSecurityViewModel> PopulateAccountSecurityViewModelAsync(AccountSecurityViewModel viewModel)
+    {
+        UserEntity? user = await _userManager.GetUserAsync(User);
+        if (user != null)
+            viewModel.IsExternalAccount = user.IsExternalAccount;
+        viewModel.ProfileInfo = await PopulateProfileInfoAsync();
+        viewModel.SecurityForm = new();
+        viewModel.DeleteForm = new();
+        return viewModel;
+    }
+
     private async Task<AccountAsideInfoModel> PopulateProfileInfoAsync()
     {
         UserEntity? user = await _userManager.GetUserAsync(User);
@@ -135,7 +225,6 @@ public class AccountController(AddressManager addressManager, SignInManager<User
 
     private async Task<BasicInfoModel> PopulateBasicInfoFormAsync()
     {
-        //lägg in try catch?
         UserEntity? user = await _userManager.GetUserAsync(User);
         if (user != null)
         {

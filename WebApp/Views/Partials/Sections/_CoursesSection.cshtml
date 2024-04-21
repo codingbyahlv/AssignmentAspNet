@@ -1,23 +1,50 @@
-﻿
+﻿@model CoursesIndexViewModel
+
 <section class="section courses-section">
     <div class="content">
         <div class="heading-wrapper">
             <h1 class="h1">Courses</h1>
             <div class="input-wrapper">
 
-                <select class="input">
-                    <option>All categories</option>
+                <select id="select" class="input">
+                    <option value="all">All categories</option>
+                    @if (Model.CoursesSection.Categories != null)
+                    {
+                        @foreach (var category in Model.CoursesSection.Categories)
+                        {
+                            <option value="@category.CategoryName">@category.CategoryName</option>
+                        }
+                    }
                 </select>
                 <div class="search-wrapper">
-                    <input type="text" class="input" placeholder="Search courses" />
+                    <input id="searchQuery" name="searchQuery" type="text" class="input" placeholder="Search courses" />
                     <i class="fa-regular fa-magnifying-glass"></i>
                 </div>
-
             </div>
         </div>
-        <div class="card-wrapper">
-            <partial name="~/Views/Partials/Sections/_CourseCardSection.cshtml" />
+        <div class="card-wrapper course-card-wrapper">
+            @if(Model.CoursesSection.CourseList != null)
+            {              
+                <partial name="~/Views/Partials/Sections/_CourseCardSection.cshtml" /> 
+            }
         </div>
-        <div class="pagination-wrapper"><i class="fa-regular fa-chevron-left"></i><span class="page-number">1</span><span class="page-number active">2</span><span class="page-number">3</span><i class="fa-regular fa-chevron-right"></i></div>
-    </div>
+        @if(Model.CoursesSection.Pagination != null && Model.CoursesSection.Pagination.TotalPages > 1)
+        {
+            <div class="pagination-wrapper">
+                <a href="@Url.Action("Index", new { pageNumber = 1, pageSize = Model.CoursesSection.Pagination.PageSize})"><i class="fa-regular fa-chevron-left"></i></a>
+                @for (int i = 1; i <= Model.CoursesSection.Pagination.TotalPages; i++)
+                {
+                    if(i == Model.CoursesSection.Pagination.CurrentPage)
+                    {
+                        <span class="page-number active">@i</span>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", new { pageNumber = i, pageSize = Model.CoursesSection.Pagination.PageSize})" class="page-number">@i</a>
+                    }
+                }
+                <a href="@Url.Action("Index", new { pageNumber = Model.CoursesSection.Pagination.TotalPages, pageSize = Model.CoursesSection.Pagination.PageSize})"><i class="fa-regular fa-chevron-right"></i></a>
+            </div>
+        }
+   </div>
 </section>

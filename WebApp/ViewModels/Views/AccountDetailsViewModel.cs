@@ -4,7 +4,7 @@ namespace WebApp.ViewModels.Views;
 
 public class AccountDetailsViewModel
 {
-    public string Title { get; set; } = "Account Details";
+    public string Title { get; set; } = "Account | Details";
     public string ViewName { get; set; } = "details";
     public bool IsExternalAccount { get; set; }
     public AccountAsideInfoModel ProfileInfo { get; set;} = null!;

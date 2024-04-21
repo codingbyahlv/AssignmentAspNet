@@ -5,9 +5,9 @@ using WebApp.ViewModels.Views;
 
 namespace WebApp.Controllers;
 
-public class HomeController(HttpClient http) : Controller
+public class HomeController(IConfiguration configuration, HttpClient http) : Controller
 {
-
+    private readonly IConfiguration _configuration = configuration;
     private readonly HttpClient _http = http;
 
     #region IndexGet
@@ -29,8 +29,8 @@ public class HomeController(HttpClient http) : Controller
         {
             try
             {
-                var content = new StringContent(JsonConvert.SerializeObject(viewModel.SubscribeSection), Encoding.UTF8, "application/json");
-                var response = await _http.PostAsync("https://localhost:7283/api/subscribers", content);
+                StringContent content = new(JsonConvert.SerializeObject(viewModel.SubscribeSection), Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await _http.PostAsync($"https://localhost:7283/api/subscribers?key={_configuration["ApiKey"]}", content);
                 if (response.IsSuccessStatusCode)
                 {
                     ViewData["Status"] = "Success";
@@ -53,15 +53,50 @@ public class HomeController(HttpClient http) : Controller
     }
     #endregion
 
+    #region ContactGet
+    [HttpGet]
     [Route("/contact")]
     public IActionResult Contact()
     {
-        return View();
+        ContactViewModel viewModel = new();
+        return View(viewModel);
     }
+    #endregion
 
+    #region ContactPost/SendForm
+    [HttpPost]
+    [Route("/contact")]
+    public async Task<IActionResult> Contact(ContactViewModel viewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                StringContent content = new(JsonConvert.SerializeObject(viewModel.ContactForm), Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await _http.PostAsync($"https://localhost:7283/api/contact?key={_configuration["ApiKey"]}", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    ViewData["Status"] = "Success";
+                }
+            }
+            catch
+            {
+                ViewData["Status"] = "Connection Failed";
+            }
+        }
+        else
+        {
+            ViewData["Status"] = "Invalid";
+        }
+        return View(viewModel);
+    }
+    #endregion
+
+    #region Error
     [Route("/error")]
     public IActionResult Error(int statusCode)
     {
         return View();
     }
+    #endregion
 }

@@ -7,7 +7,6 @@ public class UserFactory
 {
     public static UserEntity Create(SignUpModel model)
     {
-        //ev fyll på med fler fält
         return new UserEntity
         {
             FirstName = model.FirstName,
@@ -53,8 +52,6 @@ public class UserFactory
             City = entity.City,
         };
     }
-
-
 
     public static AccountAsideInfoModel Create(string firstName, string lastName, string email)
     {

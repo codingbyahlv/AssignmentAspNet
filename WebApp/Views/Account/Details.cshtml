@@ -9,7 +9,7 @@
         <h1 class="h1 mobile-heading">Account Details</h1>
 
         <aside class="account-aside">
-            @await Html.PartialAsync("~/Views/Partials/Sections/_AccountAsideSection.cshtml", Model.ProfileInfo);
+            @await Html.PartialAsync("~/Views/Partials/Sections/_AccountAsideSection.cshtml", Model.ProfileInfo)
         </aside>
 
         <main class="account-form-section">
@@ -138,4 +138,5 @@
     </div>
 </section>
 
-@* @await Html.PartialAsync("~/Views/Shared/Partials/Scripts/_ValidationScript.cshtml") *@
+
+@await Html.PartialAsync("~/Views/Shared/Scripts/_ValidationScript.cshtml")

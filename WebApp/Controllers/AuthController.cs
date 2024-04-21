@@ -116,7 +116,7 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
         var info = await _signInManager.GetExternalLoginInfoAsync();
         if (info != null)
         {
-            UserEntity userEntity = new UserEntity
+            UserEntity userEntity = new()
             {
                 FirstName = info.Principal.FindFirstValue(ClaimTypes.GivenName)!,
                 LastName = info.Principal.FindFirstValue(ClaimTypes.Surname)!,
@@ -161,7 +161,7 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     #endregion
 
     // External login - Google
-    #region Facebook
+    #region Google
     [HttpGet]
     public IActionResult Google()
     {
@@ -175,7 +175,7 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
         var info = await _signInManager.GetExternalLoginInfoAsync();
         if (info != null)
         {
-            UserEntity userEntity = new UserEntity
+            UserEntity userEntity = new()
             {
                 FirstName = info.Principal.FindFirstValue(ClaimTypes.GivenName)!,
                 LastName = info.Principal.FindFirstValue(ClaimTypes.Surname)!,

@@ -37,9 +37,6 @@
                     background-color: $gray-special-hover;
                     color: $gray-500;
 
-                    @include breakpoint("large") {
-                    }
-
                     &:last-child {
                         min-width: 300px;
                     }
@@ -72,10 +69,10 @@
 
         .card-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 24px;
 
-            @include breakpoint("medium") {
+            @include breakpoint("small") {
                 grid-template-columns: 1fr 1fr;
             }
 
@@ -143,6 +140,20 @@
                         .h6 {
                             color: $theme;
                         }
+
+                        .price-wrapper {
+                            display: flex;
+                            gap: 8px;
+
+                            .discount {
+                                color: $danger;
+                            }
+
+                            .ord {
+                                text-decoration: line-through;
+                                color: $gray-100;
+                            }
+                        }
                     }
 
                     .meta-wrapper {
@@ -152,6 +163,10 @@
                         border-top: 1px solid $gray-300;
                         color: $gray-600;
                     }
+                }
+
+                &:hover {
+                    text-decoration: none !important;
                 }
             }
         }

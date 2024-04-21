@@ -5,6 +5,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        .img{
+            max-width: 90%;
+        }
 
         .text-wrapper{
             display: flex;
@@ -12,6 +15,9 @@
             align-items: center;
             gap: 16px; 
 
+            p{
+                text-align: center;
+            }
             a{
                 margin-top: 34px;
             }
